@@ -7,7 +7,16 @@ module.exports = {
       './vendor/filament/**/*.blade.php',
   ],
   theme: {
-    extend: {},
+    extend: {
+        fontFamily: {
+            'code': ['Source Code Pro'],
+        },
+        colors: {
+            'aoc': {
+                'green': '#4AF626',
+            }
+        }
+    },
   },
   plugins: [],
 }

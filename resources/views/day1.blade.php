@@ -7,7 +7,7 @@
                 Find the Elf carrying the most Calories. <strong>How many total Calories is that Elf carrying?</strong>
             </x-question>
             <x-answer>
-                {{ $mostCalories }}
+                {{ $elfWithMostCalories }}
             </x-answer>
         </div>
         <div>
@@ -15,7 +15,7 @@
                 Find the top three Elves carrying the most Calories. <strong>How many Calories are those Elves carrying in total?</strong>
             </x-question>
             <x-answer>
-                {{ $topThreeCalories }}
+                {{ $topThreeCaloriesSummed }}
             </x-answer>
         </div>
     </div>

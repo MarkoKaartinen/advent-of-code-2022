@@ -23,8 +23,8 @@ class Day1Controller extends Controller
         }
 
         $elfsCalorySumsCollection = collect($elfsCalorySums);
-        $mostCalories = $elfsCalorySumsCollection->max();
-        $topThreeCalories = $elfsCalorySumsCollection->sortDesc()->take(3)->sum();
-        return view('day1', compact('mostCalories', 'topThreeCalories'));
+        $elfWithMostCalories = $elfsCalorySumsCollection->max();
+        $topThreeCaloriesSummed = $elfsCalorySumsCollection->sortDesc()->take(3)->sum();
+        return view('day1', compact('elfWithMostCalories', 'topThreeCaloriesSummed'));
     }
 }

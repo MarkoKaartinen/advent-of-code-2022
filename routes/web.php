@@ -18,4 +18,4 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
-Route::get('/day1', Day1Controller::class)->name('day1');
+Route::get('/day/1', Day1Controller::class)->name('day1');

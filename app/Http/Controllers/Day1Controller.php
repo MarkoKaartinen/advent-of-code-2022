@@ -11,20 +11,20 @@ class Day1Controller extends Controller
     {
         $input = Storage::disk('root')->get('/inputs/day1/input.txt');
         $calories = collect(Str::of($input)->explode("\n"));
-        $calorySum = 0;
-        $calorySums = [];
+        $elfsCalories = 0;
+        $elfsCalorySums = [];
         foreach ($calories as $calory){
             if($calory == ""){
-                $calorySums[] = $calorySum;
-                $calorySum = 0;
+                $elfsCalorySums[] = $elfsCalories;
+                $elfsCalories = 0;
             }else{
-                $calorySum += (int) $calory;
+                $elfsCalories += (int) $calory;
             }
         }
 
-        $calorySumsColl = collect($calorySums);
-        $largest = $calorySumsColl->max();
-        $topThree = $calorySumsColl->sortDesc()->take(3)->sum();
-        return view('day1', compact('largest', 'topThree'));
+        $elfsCalorySumsCollection = collect($elfsCalorySums);
+        $mostCalories = $elfsCalorySumsCollection->max();
+        $topThreeCalories = $elfsCalorySumsCollection->sortDesc()->take(3)->sum();
+        return view('day1', compact('mostCalories', 'topThreeCalories'));
     }
 }

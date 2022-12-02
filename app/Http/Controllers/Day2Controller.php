@@ -9,10 +9,6 @@ use Illuminate\Support\Str;
 
 class Day2Controller extends Controller
 {
-    /*
-     * First: 14069
-     * Second: 12411
-     */
     public function __invoke()
     {
         $rounds = collect(Str::of(Storage::disk('root')->get('/inputs/day2/input.txt'))->explode("\n"));

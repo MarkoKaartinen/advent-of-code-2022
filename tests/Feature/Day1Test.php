@@ -1,10 +1,16 @@
 <?php
 
-test('First task answer is still correct', function (){
-    $this->get(route('day1'))->assertSeeText("68802");
+test('Day 1: Part 1 answer', function (){
+    $this->get(route('day1'))->assertSeeTextInOrder([
+        'Part 1:',
+        '68802'
+    ]);
 });
 
-test('Seconds task answer is still correct', function (){
-    $this->get(route('day1'))->assertSeeText("205370");
+test('Day 1: Part 2 answer', function (){
+    $this->get(route('day1'))->assertSeeTextInOrder([
+        'Part 2:',
+        '205370'
+    ]);
 });
 

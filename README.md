@@ -20,3 +20,5 @@ Disclaimers:
 Links:
 * [MarkoK.dev](https://markok.dev)
 * [Mastodon](https://kaartinen.social/@marko)
+
+![Advent of Code](https://user-images.githubusercontent.com/431075/205282604-40d99cd8-37ad-440c-b3ab-1f52d2f6b7f9.png)

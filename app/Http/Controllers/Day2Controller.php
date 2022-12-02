@@ -2,109 +2,116 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\RPSResultEnum;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class Day2Controller extends Controller
 {
     /*
-     * A = Rock
-     * B = Paper
-     * C = Scissors
-     * X = Rock
-     * Y = Paper
-     * Z = Scissors
-     * R = Rock
-     * P = Paper
-     * S = Scissors
-     */
-
-    /*
      * First: 14069
      * Second: 12411
      */
     public function __invoke()
     {
+        $rounds = collect(Str::of(Storage::disk('root')->get('/inputs/day2/input.txt'))->explode("\n"));
+
         return view('day2', [
-            'first' => $this->firstHalf(),
-            'second' => $this->secondHalf(),
+            'first' => $this->firstHalf($rounds),
+            'second' => $this->secondHalf($rounds),
         ]);
     }
 
-    private function secondHalf(){
-        $wins = [
-            'A' => 'P',
-            'B' => 'S',
-            'C' => 'R',
-        ];
-        $loses = [
-            'A' => 'S',
-            'B' => 'R',
-            'C' => 'P',
-        ];
-        $ties = [
+    private function firstHalf(Collection $rounds){
+        $points = 0;
+
+        foreach ($rounds as $round){
+            $choosings = Str::of($round)->explode(' ');
+            $opponent = $this->transformToRPS($choosings[0]);
+            $me = $this->transformToRPS($choosings[1]);
+
+            $result = $this->showMeTheResult($opponent, $me);
+            $points += $result->value;
+            $points += $this->getMyPoints($me);
+        }
+        return $points;
+    }
+
+    private function secondHalf(Collection $rounds){
+        $points = 0;
+
+        foreach ($rounds as $round){
+            $choosings = Str::of($round)->explode(' ');
+            $opponent = $this->transformToRPS($choosings[0]);
+            $me = $choosings[1];
+
+            $result = RPSResultEnum::LOSE;
+            if($me == 'Y'){
+                $result = RPSResultEnum::TIE;
+            }
+            if($me == 'Z'){
+                $result = RPSResultEnum::WIN;
+            }
+            $points += $this->getMyPoints($this->playTheGame($opponent, $result));
+            $points += $result->value;
+        }
+        return $points;
+    }
+
+    public function transformToRPS($value){
+        $pairings = [
             'A' => 'R',
             'B' => 'P',
             'C' => 'S',
+            'X' => 'R',
+            'Y' => 'P',
+            'Z' => 'S',
         ];
-        $myPoints = [
+        return $pairings[$value];
+    }
+
+    public function getMyPoints($value){
+        $points = [
             'R' => 1,
             'P' => 2,
             'S' => 3,
         ];
-
-        $rounds = collect(Str::of(Storage::disk('root')->get('/inputs/day2/input.txt'))->explode("\n"));
-
-        $points = 0;
-
-        foreach ($rounds as $round){
-            $choosings = Str::of($round)->explode(' ');
-            $opponent = $choosings[0];
-            $me = $choosings[1];
-
-            if($me == 'X'){
-                $points += $myPoints[$loses[$opponent]];
-            }
-            if($me == 'Y'){
-                $points += $myPoints[$ties[$opponent]];
-                $points += 3;
-            }
-            if($me == 'Z'){
-                $points += $myPoints[$wins[$opponent]];
-                $points += 6;
-            }
-        }
-        return $points;
+        return $points[$value];
     }
 
-    private function firstHalf(){
-        $ties = ["AX", "BY", "CZ"];
-        $loses = ["AZ", "BX", "CY"];
-        $wins = ["AY", "BZ", "CX"];
-
-        $myPoints = [
-            'X' => 1,
-            'Y' => 2,
-            'Z' => 3,
-        ];
-
-        $rounds = collect(Str::of(Storage::disk('root')->get('/inputs/day2/input.txt'))->explode("\n"));
-
-        $points = 0;
-
-        foreach ($rounds as $round){
-            $choosings = Str::of($round)->explode(' ');
-            $opponent = $choosings[0];
-            $me = $choosings[1];
-
-            if(in_array($opponent.$me, $ties)){
-                $points += 3;
+    public function playTheGame($opponent, $wantedResult){
+        $result = null;
+        $myPlay = null;
+        while ($result != $wantedResult){
+            foreach (["R", "P", "S"] as $me){
+                $res = $this->showMeTheResult($opponent, $me);
+                if($res == $wantedResult){
+                    $result = $res;
+                    $myPlay = $me;
+                }
             }
-            if(in_array($opponent.$me, $wins)){
-                $points += 6;
-            }
-            $points += $myPoints[$me];
         }
-        return $points;
+        return $myPlay;
+    }
+
+    public function showMeTheResult($opponent, $me){
+        $game = $opponent.$me;
+        $rules = $this->rules();
+        if(in_array($game, $rules['ties'])){
+            return RPSResultEnum::TIE;
+        }
+        if(in_array($game, $rules['wins'])){
+            return RPSResultEnum::WIN;
+        }
+        return RPSResultEnum::LOSE;
+    }
+
+    public function rules(){
+        return [
+            'ties' => ["RR", "PP", "SS"],
+            'wins' => ["RP", "PS", "SR"],
+            'loses' => ["RS", "PR", "SP"],
+        ];
     }
 }

@@ -18,7 +18,13 @@
     <!-- Page Content -->
     <main class="flex flex-col md:flex-row">
         <div class="grow">
-            {{ $slot }}
+            <header>
+                <h1 class="text-5xl font-bold text-aoc-green mb-12 leading-none">Advent of Code 2022</h1>
+            </header>
+
+            <div>
+                {{ $slot }}
+            </div>
 
             @if(request()->route()->getName() != 'home')
                 <div class="pt-12">

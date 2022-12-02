@@ -24,8 +24,8 @@ class Day2Controller extends Controller
 
         foreach ($rounds as $round){
             $choosings = Str::of($round)->explode(' ');
-            $opponent = $this->transformToRPS($choosings[0]);
-            $me = $this->transformToRPS($choosings[1]);
+            $opponent = $this->transformToRPS($choosings->get(0));
+            $me = $this->transformToRPS($choosings->get(1));
 
             $result = $this->showMeTheResult($opponent, $me);
             $points += $result->value;
@@ -39,8 +39,8 @@ class Day2Controller extends Controller
 
         foreach ($rounds as $round){
             $choosings = Str::of($round)->explode(' ');
-            $opponent = $this->transformToRPS($choosings[0]);
-            $me = $choosings[1];
+            $opponent = $this->transformToRPS($choosings->get(0));
+            $me = $choosings->get(1);
 
             $result = RPSResultEnum::LOSE;
             if($me == 'Y'){

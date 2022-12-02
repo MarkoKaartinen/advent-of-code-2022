@@ -13,7 +13,7 @@ class Day1Controller extends Controller
         $calories = collect(Str::of(Storage::disk('root')->get('/inputs/day1/input.txt'))->explode("\n"));
 
         $elfsCalorySumsCollection = $this->sortElfsCalories($calories);
-        
+
         $elfWithMostCalories = $elfsCalorySumsCollection->max();
         $topThreeCaloriesSummed = $elfsCalorySumsCollection->sortDesc()->take(3)->sum();
 

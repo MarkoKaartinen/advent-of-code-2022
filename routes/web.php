@@ -1,8 +1,5 @@
 <?php
 
-use App\Http\Controllers\Day1Controller;
-use App\Http\Controllers\Day2Controller;
-use App\Http\Controllers\Day3Controller;
 use App\Http\Controllers\DayController;
 use Illuminate\Support\Facades\Route;
 

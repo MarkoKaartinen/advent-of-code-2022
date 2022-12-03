@@ -15,7 +15,7 @@ class Day3 implements DayInterface
         if(is_a($rucksacks, Collection::class)) {
             $this->rucksacks = $rucksacks;
         }else{
-            $this->rucksacks = collect(Str::of(Storage::disk('root')->get('/inputs/day3/input.txt'))->explode("\n"));
+            $this->rucksacks = collect(Str::of(Storage::disk('root')->get('/inputs/day3.txt'))->explode("\n"));
         }
     }
 

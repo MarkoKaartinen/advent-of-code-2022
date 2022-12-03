@@ -15,7 +15,7 @@ class Day1 implements DayInterface
         if(is_a($calories, Collection::class)) {
             $this->calories = $calories;
         }else{
-            $this->calories = collect(Str::of(Storage::disk('root')->get('/inputs/day1/input.txt'))->explode("\n"));
+            $this->calories = collect(Str::of(Storage::disk('root')->get('/inputs/day1.txt'))->explode("\n"));
         }
     }
 

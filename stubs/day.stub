@@ -1,0 +1,31 @@
+<?php
+namespace App\Days;
+
+use App\Interfaces\DayInterface;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+
+class Day$NUMBER$ implements DayInterface
+{
+    public Collection $stuff;
+
+    public function __construct($stuff = null)
+    {
+        if(is_a($stuff, Collection::class)) {
+            $this->stuff = $stuff;
+        }else{
+            $this->stuff = collect(Str::of(Storage::disk('root')->get('/inputs/day$NUMBER$.txt'))->explode("\n"));
+        }
+    }
+
+    public function part1()
+    {
+        //
+    }
+
+    public function part2()
+    {
+        //
+    }
+}

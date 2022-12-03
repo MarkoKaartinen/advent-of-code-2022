@@ -1,11 +1,11 @@
 <x-app>
     <div class="flex flex-wrap">
-        @foreach(config('aoc.days') as $day)
+        @foreach($days as $day)
             <div class="mr-2 mb-2 grow">
                 <a class="border-2 uppercase font-bold tracking-wider border-dashed px-4 py-3 hover:border-aoc-green hover:text-aoc-green text-2xl text-center block" href="{{ route('day', ['day' => $day]) }}">Day {{ $day }}</a>
             </div>
         @endforeach
-        @for($day = count(config('aoc.days'))+1; $day <= 25; $day++)
+        @for($day = count($days)+1; $day <= 25; $day++)
             <div class="mr-2 mb-2 grow">
                 <span class="border-2 uppercase border-gray-600 text-gray-600 font-bold tracking-wider border-dashed px-4 py-3 text-2xl text-center block cursor-default">Day {{ $day }}</span>
             </div>

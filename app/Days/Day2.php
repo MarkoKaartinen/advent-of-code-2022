@@ -16,7 +16,7 @@ class Day2 implements DayInterface
         if(is_a($rounds, Collection::class)) {
             $this->rounds = $rounds;
         }else{
-            $this->rounds = collect(Str::of(Storage::disk('root')->get('/inputs/day2/input.txt'))->explode("\n"));
+            $this->rounds = collect(Str::of(Storage::disk('root')->get('/inputs/day2.txt'))->explode("\n"));
         }
     }
 

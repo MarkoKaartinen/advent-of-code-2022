@@ -2,11 +2,12 @@
 namespace App\Days;
 
 use App\Enums\RPSResultEnum;
+use App\Interfaces\DayInterface;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
-class Day2
+class Day2 implements DayInterface
 {
     public Collection $rounds;
 

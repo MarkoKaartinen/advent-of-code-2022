@@ -1,11 +1,12 @@
 <?php
 namespace App\Days;
 
+use App\Interfaces\DayInterface;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
-class Day1
+class Day1 implements DayInterface
 {
     public Collection $calories;
 

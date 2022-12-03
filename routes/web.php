@@ -3,6 +3,7 @@
 use App\Http\Controllers\Day1Controller;
 use App\Http\Controllers\Day2Controller;
 use App\Http\Controllers\Day3Controller;
+use App\Http\Controllers\DayController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,6 +21,4 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
-Route::get('/day/1', Day1Controller::class)->name('day1');
-Route::get('/day/2', Day2Controller::class)->name('day2');
-Route::get('/day/3', Day3Controller::class)->name('day3');
+Route::get('/day/{day}', DayController::class)->name('day');

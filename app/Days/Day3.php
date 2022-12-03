@@ -1,11 +1,12 @@
 <?php
 namespace App\Days;
 
+use App\Interfaces\DayInterface;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
-class Day3
+class Day3 implements DayInterface
 {
     public Collection $rucksacks;
 

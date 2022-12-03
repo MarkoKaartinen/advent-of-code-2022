@@ -1,12 +1,13 @@
 <x-app>
     <div class="flex flex-wrap">
-        @for($day = 1; $day <= 25; $day++)
+        @foreach(config('aoc.days') as $day)
             <div class="mr-2 mb-2 grow">
-                @if(Route::has('day'.$day))
-                    <a class="border-2 uppercase font-bold tracking-wider border-dashed px-4 py-3 hover:border-aoc-green hover:text-aoc-green text-2xl text-center block" href="{{ route('day'.$day) }}">Day {{ $day }}</a>
-                @else
-                    <span class="border-2 uppercase border-gray-600 text-gray-600 font-bold tracking-wider border-dashed px-4 py-3 text-2xl text-center block cursor-default">Day {{ $day }}</span>
-                @endif
+                <a class="border-2 uppercase font-bold tracking-wider border-dashed px-4 py-3 hover:border-aoc-green hover:text-aoc-green text-2xl text-center block" href="{{ route('day', ['day' => $day]) }}">Day {{ $day }}</a>
+            </div>
+        @endforeach
+        @for($day = count(config('aoc.days'))+1; $day <= 25; $day++)
+            <div class="mr-2 mb-2 grow">
+                <span class="border-2 uppercase border-gray-600 text-gray-600 font-bold tracking-wider border-dashed px-4 py-3 text-2xl text-center block cursor-default">Day {{ $day }}</span>
             </div>
         @endfor
     </div>

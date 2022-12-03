@@ -1,15 +1,19 @@
 <?php
 
-test('Day 2: Part 1 answer', function (){
-    $this->get(route('day2'))->assertSeeTextInOrder([
-        'Part 1:',
-        '14069'
-    ]);
+use App\Days\Day2;
+
+beforeEach(function (){
+    $this->input = 'A Y
+B X
+C Z';
+    $this->day = new Day2(collect(Str::of($this->input)->explode("\n")));
+
 });
 
-test('Day 2: Part 2 answer', function (){
-    $this->get(route('day2'))->assertSeeTextInOrder([
-        'Part 2:',
-        '12411'
-    ]);
+test('Day 2: Part 1', function (){
+    $this->assertEquals(15, $this->day->part1());
+});
+
+test('Day 2: Part 2', function (){
+    $this->assertEquals(12, $this->day->part2());
 });

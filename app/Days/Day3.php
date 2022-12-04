@@ -37,7 +37,7 @@ class Day3 implements DayInterface
         return $prioritySum;
     }
 
-    public function part2()
+    public function part2(): int
     {
         $priorities = $this->priorities();
         $prioritySum = 0;

@@ -36,7 +36,7 @@ class Day4 implements DayInterface
         return $containingPairs;
     }
 
-    public function part2()
+    public function part2(): int
     {
         $containingPairs = 0;
         foreach ($this->pairs as $pair){

@@ -19,14 +19,14 @@ class Day1 implements DayInterface
         }
     }
 
-    public function part1()
+    public function part1(): int
     {
         $elfsCalorySumsCollection = $this->sortElfsCalories($this->calories);
 
         return $elfsCalorySumsCollection->max();
     }
 
-    public function part2()
+    public function part2(): int
     {
         $elfsCalorySumsCollection = $this->sortElfsCalories($this->calories);
         return $elfsCalorySumsCollection->sortDesc()->take(3)->sum();

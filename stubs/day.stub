@@ -19,12 +19,12 @@ class Day$NUMBER$ implements DayInterface
         }
     }
 
-    public function part1()
+    public function part1(): int
     {
         //
     }
 
-    public function part2()
+    public function part2(): int
     {
         //
     }

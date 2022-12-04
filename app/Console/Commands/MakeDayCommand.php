@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Facades\Http;
 
 class MakeDayCommand extends Command
 {
@@ -52,11 +53,21 @@ class MakeDayCommand extends Command
     public function createDayInputFile(){
         $path = base_path('storage/inputs') .'/day' .$this->argument('number') . '.txt';
         if (!$this->files->exists($path)) {
-            $this->files->put($path, '');
+            $this->files->put($path, $this->getDaysInput());
             $this->info("File : $path created");
         } else {
             $this->info("File : $path already exits");
         }
+    }
+
+    public function getDaysInput(): string
+    {
+        $url = 'https://adventofcode.com/2022/day/'.$this->argument('number').'/input';
+        $response = Http::withCookies(['session' => config('aoc.aoc_session')], 'adventofcode.com')->get($url);
+        if($response->successful()){
+            return trim($response->body());
+        }
+        return '';
     }
 
     public function getStubContents($stub , $stubVariables = []): array|bool|string

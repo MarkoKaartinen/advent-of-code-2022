@@ -1,9 +1,9 @@
 <?php
 namespace App\Days;
 
+use App\Helpers\DayConstructor;
 use App\Interfaces\DayInterface;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class Day3 implements DayInterface
@@ -12,11 +12,7 @@ class Day3 implements DayInterface
 
     public function __construct($rucksacks = null)
     {
-        if(is_a($rucksacks, Collection::class)) {
-            $this->rucksacks = $rucksacks;
-        }else{
-            $this->rucksacks = collect(Str::of(Storage::disk('root')->get('/inputs/day3.txt'))->explode("\n"));
-        }
+        $this->rucksacks = DayConstructor::construct($rucksacks, 3);
     }
 
     public function part1(): int

@@ -1,10 +1,9 @@
 <?php
 namespace App\Days;
 
+use App\Helpers\DayConstructor;
 use App\Interfaces\DayInterface;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
 
 class Day1 implements DayInterface
 {
@@ -12,11 +11,7 @@ class Day1 implements DayInterface
 
     public function __construct($calories = null)
     {
-        if(is_a($calories, Collection::class)) {
-            $this->calories = $calories;
-        }else{
-            $this->calories = collect(Str::of(Storage::disk('root')->get('/inputs/day1.txt'))->explode("\n"));
-        }
+        $this->calories = DayConstructor::construct($calories, 1);
     }
 
     public function part1(): int

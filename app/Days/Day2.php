@@ -2,9 +2,9 @@
 namespace App\Days;
 
 use App\Enums\RPSResultEnum;
+use App\Helpers\DayConstructor;
 use App\Interfaces\DayInterface;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class Day2 implements DayInterface
@@ -13,11 +13,7 @@ class Day2 implements DayInterface
 
     public function __construct($rounds = null)
     {
-        if(is_a($rounds, Collection::class)) {
-            $this->rounds = $rounds;
-        }else{
-            $this->rounds = collect(Str::of(Storage::disk('root')->get('/inputs/day2.txt'))->explode("\n"));
-        }
+        $this->rounds = DayConstructor::construct($rounds, 2);
     }
 
     public function part1(): int

@@ -1,9 +1,9 @@
 <?php
 namespace App\Days;
 
+use App\Helpers\DayConstructor;
 use App\Interfaces\DayInterface;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class Day4 implements DayInterface
@@ -12,11 +12,7 @@ class Day4 implements DayInterface
 
     public function __construct($pairs = null)
     {
-        if(is_a($pairs, Collection::class)) {
-            $this->pairs = $pairs;
-        }else{
-            $this->pairs = collect(Str::of(Storage::disk('root')->get('/inputs/day4.txt'))->explode("\n"));
-        }
+        $this->pairs = DayConstructor::construct($pairs, 4);
     }
 
     public function part1(): int

@@ -23,33 +23,22 @@ class Day5 implements DayInterface
     public function part1(): string
     {
         $this->parseStacks();
-        $tops = '';
         foreach ($this->instructions as $instruction){
-            preg_match_all('!\d+!', $instruction, $numbers);
-            $amount = (int) $numbers[0][0];
-            $from = (int) $numbers[0][1];
-            $to = (int) $numbers[0][2];
+            list($amount, $from, $to) = $this->parseInstruction($instruction);
             for($i = 0; $i < $amount; $i++){
                 $last = end($this->stacks[$from]);
                 array_pop($this->stacks[$from]);
                 $this->stacks[$to][] = $last;
             }
         }
-        foreach ($this->stacks as $stack){
-            $tops .= end($stack);
-        }
-        return $tops;
+        return $this->getTopCrates();
     }
 
     public function part2(): string
     {
         $this->parseStacks();
-        $tops = '';
         foreach ($this->instructions as $instruction){
-            preg_match_all('!\d+!', $instruction, $numbers);
-            $amount = (int) $numbers[0][0];
-            $from = (int) $numbers[0][1];
-            $to = (int) $numbers[0][2];
+            list($amount, $from, $to) = $this->parseInstruction($instruction);
             $targets = [];
             for($i = 0; $i < $amount; $i++){
                 $last = end($this->stacks[$from]);
@@ -60,15 +49,27 @@ class Day5 implements DayInterface
                 $this->stacks[$to][] = $target;
             }
         }
-        foreach ($this->stacks as $stack){
-            $tops .= end($stack);
-        }
-        return $tops;
+        return $this->getTopCrates();
     }
 
     private function setup(){
         $this->figureOutStartRows();
         $this->parseInstructions();
+    }
+
+    private function parseInstruction(string $instruction): array
+    {
+        preg_match_all('!\d+!', $instruction, $numbers);
+        return $numbers[0];
+    }
+
+    private function getTopCrates(): string
+    {
+        $tops = '';
+        foreach ($this->stacks as $stack){
+            $tops .= end($stack);
+        }
+        return $tops;
     }
 
     private function parseStacks(){

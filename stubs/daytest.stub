@@ -4,7 +4,6 @@ use App\Days\Day$NUMBER$;
 beforeEach(function (){
     $this->input = '';
     $this->day = new Day$NUMBER$(collect(Str::of($this->input)->explode("\n")));
-
 });
 
 test('Day $NUMBER$: Part 1', function (){

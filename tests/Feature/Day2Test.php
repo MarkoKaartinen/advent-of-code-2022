@@ -10,10 +10,10 @@ C Z';
 
 });
 
-test('Day 2: Part 1', function (){
+test('Part 1', function (){
     $this->assertEquals(15, $this->day->part1());
 });
 
-test('Day 2: Part 2', function (){
+test('Part 2', function (){
     $this->assertEquals(12, $this->day->part2());
 });

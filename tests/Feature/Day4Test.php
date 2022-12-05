@@ -12,10 +12,10 @@ beforeEach(function (){
 
 });
 
-test('Day 4: Part 1', function (){
+test('Part 1', function (){
     $this->assertEquals(2, $this->day->part1());
 });
 
-test('Day 4: Part 2', function (){
+test('Part 2', function (){
     $this->assertEquals(4, $this->day->part2());
 });

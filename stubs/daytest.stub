@@ -6,12 +6,12 @@ beforeEach(function (){
     $this->day = new Day$NUMBER$(collect(Str::of($this->input)->explode("\n")));
 });
 
-test('Day $NUMBER$: Part 1', function (){
+test('Part 1', function (){
     $this->markTestSkipped();
     $this->assertEquals(1, $this->day->part1());
 });
 
-test('Day $NUMBER$: Part 2', function (){
+test('Part 2', function (){
     $this->markTestSkipped();
     $this->assertEquals(2, $this->day->part2());
 });

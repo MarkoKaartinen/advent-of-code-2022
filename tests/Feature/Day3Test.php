@@ -13,10 +13,10 @@ CrZsJsPPZsGzwwsLwLmpwMDw';
 
 });
 
-test('Day 3: Part 1', function (){
+test('Part 1', function (){
     $this->assertEquals(157, $this->day->part1());
 });
 
-test('Day 3: Part 2', function (){
+test('Part 2', function (){
     $this->assertEquals(70, $this->day->part2());
 });

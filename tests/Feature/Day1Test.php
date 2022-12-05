@@ -22,11 +22,11 @@ beforeEach(function (){
 
 });
 
-test('Day 1: Part 1', function (){
+test('Part 1', function (){
     $this->assertEquals(24000, $this->day->part1());
 });
 
-test('Day 1: Part 2', function (){
+test('Part 2', function (){
     $this->assertEquals(45000, $this->day->part2());
 });
 

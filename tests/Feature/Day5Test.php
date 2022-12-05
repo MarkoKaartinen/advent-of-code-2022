@@ -14,10 +14,10 @@ move 1 from 1 to 2';
     $this->day = new Day5(collect(Str::of($this->input)->explode("\n")));
 });
 
-test('Day 5: Part 1', function (){
+test('Part 1', function (){
     $this->assertEquals("CMZ", $this->day->part1());
 });
 
-test('Day 5: Part 2', function (){
+test('Part 2', function (){
     $this->assertEquals("MCD", $this->day->part2());
 });

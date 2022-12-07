@@ -5,6 +5,7 @@ use App\Days\Day3;
 use App\Days\Day4;
 use App\Days\Day5;
 use App\Days\Day6;
+use App\Days\Day7;
 
 test('Day 1', function (){
     $this->assertEquals(68802, (new Day1)->part1());
@@ -34,4 +35,9 @@ test('Day 5', function (){
 test('Day 6', function (){
     $this->assertEquals(1287, (new Day6())->part1());
     $this->assertEquals(3716, (new Day6())->part2());
+});
+
+test('Day 7', function (){
+    $this->assertEquals(1477771, (new Day7())->part1());
+    $this->assertEquals(3579501, (new Day7())->part2());
 });
